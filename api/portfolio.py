@@ -21,7 +21,7 @@ def github_raw(token: str, path: str):
         return None
 
 
-def yf_price(ticker: str) -> float | None:
+def yf_price(ticker: str):
     # Yahoo Finance非公式APIで価格取得（依存なし）
     try:
         url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=2d"
