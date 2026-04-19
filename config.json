@@ -1,0 +1,35 @@
+{
+  "initial_cash": 1000000,
+  "per_trade_amount": 50000,
+  "max_positions": 10,
+  "stop_loss": -0.05,
+  "take_profit": 0.15,
+  "trades_per_day": 1,
+  "watchlist": {
+    "japan": [
+      "7203.T",
+      "9984.T",
+      "6861.T",
+      "4063.T",
+      "8306.T",
+      "9432.T",
+      "6758.T",
+      "7974.T",
+      "4519.T",
+      "6954.T"
+    ],
+    "us": [
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "AMZN",
+      "NVDA",
+      "META",
+      "TSLA",
+      "BRK-B",
+      "JPM",
+      "V"
+    ]
+  },
+  "slack_webhook_url": ""
+}

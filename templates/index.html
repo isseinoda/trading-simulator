@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>トレーディングシミュレーター</title>
+  <style>
+    :root {
+      --sbi-navy: #003087;
+      --sbi-navy-dark: #001f5a;
+      --sbi-orange: #e6500a;
+      --sbi-orange-light: #f07030;
+      --sbi-gray-bg: #f2f4f7;
+      --sbi-border: #c8cfd8;
+      --sbi-text: #1a1a1a;
+      --sbi-text-muted: #666;
+      --up-color: #cc0000;
+      --down-color: #0055aa;
+      --up-bg: #fff0f0;
+      --down-bg: #f0f4ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      font-size: 13px;
+      background: var(--sbi-gray-bg);
+      color: var(--sbi-text);
+    }
+
+    /* ヘッダー */
+    header {
+      background: linear-gradient(180deg, var(--sbi-navy-dark) 0%, var(--sbi-navy) 100%);
+      padding: 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-badge {
+      background: var(--sbi-orange);
+      color: white;
+      font-weight: 900;
+      font-size: 15px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      letter-spacing: 1px;
+    }
+
+    .logo-sub {
+      color: #aac4f0;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: #cde;
+      font-size: 12px;
+    }
+
+    .sim-badge {
+      background: var(--sbi-orange);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 0;
+      padding: 0 20px;
+    }
+
+    .header-nav a {
+      color: #cde;
+      text-decoration: none;
+      padding: 8px 16px;
+      font-size: 12px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      transition: background 0.15s;
+    }
+
+    .header-nav a:hover, .header-nav a.active {
+      background: rgba(255,255,255,0.12);
+      color: white;
+    }
+
+    /* メインレイアウト */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* サマリーカード */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .summary-card {
+      background: white;
+      border: 1px solid var(--sbi-border);
+      border-radius: 4px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .summary-card .label {
+      color: var(--sbi-text-muted);
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .summary-card .value {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--sbi-text);
+      letter-spacing: -0.5px;
+    }
+
+    .summary-card .sub {
+      font-size: 11px;
+      margin-top: 3px;
+      color: var(--sbi-text-muted);
+    }
+
+    .summary-card.total { border-top: 3px solid var(--sbi-orange); }
+
+    /* 評価損益 */
+    .up { color: var(--up-color) !important; }
+    .down { color: var(--down-color) !important; }
+    .flat { color: #555 !important; }
+
+    /* セクションタイトル */
+    .section {
+      background: white;
+      border: 1px solid var(--sbi-border);
+      border-radius: 4px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .section-header {
+      background: linear-gradient(180deg, #e8edf5 0%, #dde3ee 100%);
+      border-bottom: 2px solid var(--sbi-navy);
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-title {
+      font-weight: bold;
+      font-size: 13px;
+      color: var(--sbi-navy);
+    }
+
+    .section-body { padding: 0; }
+
+    /* テーブル */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    thead tr {
+      background: #f5f7fa;
+    }
+
+    thead th {
+      padding: 7px 12px;
+      text-align: right;
+      color: #444;
+      font-weight: bold;
+      border-bottom: 1px solid var(--sbi-border);
+      border-right: 1px solid #e4e8ef;
+      white-space: nowrap;
+    }
+
+    thead th:first-child { text-align: left; }
+
+    tbody tr {
+      border-bottom: 1px solid #edf0f5;
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: #f8f9fc; }
+
+    tbody td {
+      padding: 9px 12px;
+      text-align: right;
+      border-right: 1px solid #edf0f5;
+      white-space: nowrap;
+    }
+
+    tbody td:first-child { text-align: left; }
+
+    .ticker-cell {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ticker-code {
+      font-weight: bold;
+      color: var(--sbi-navy);
+      font-size: 13px;
+    }
+
+    .ticker-name {
+      color: var(--sbi-text-muted);
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    .gain-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .pill.up { background: var(--up-bg); color: var(--up-color); }
+    .pill.down { background: var(--down-bg); color: var(--down-color); }
+
+    /* 取引履歴バッジ */
+    .action-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .action-badge.buy { background: #fff0f0; color: var(--up-color); border: 1px solid #ffcccc; }
+    .action-badge.sell { background: #f0f4ff; color: var(--down-color); border: 1px solid #cce0ff; }
+
+    /* フッター */
+    .footer {
+      text-align: center;
+      color: #999;
+      font-size: 11px;
+      padding: 20px;
+    }
+
+    /* ローディング */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: var(--sbi-text-muted);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ddd;
+      border-top-color: var(--sbi-navy);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* 更新ボタン */
+    .refresh-btn {
+      background: var(--sbi-navy);
+      color: white;
+      border: none;
+      padding: 5px 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.15s;
+    }
+
+    .refresh-btn:hover { background: var(--sbi-navy-dark); }
+
+    .updated-at {
+      font-size: 11px;
+      color: var(--sbi-text-muted);
+    }
+
+    /* 空ポジション */
+    .empty-row td {
+      text-align: center !important;
+      color: var(--sbi-text-muted);
+      padding: 24px;
+      font-size: 12px;
+    }
+
+    /* エラー */
+    .error-box {
+      background: #fff5f5;
+      border: 1px solid #fcc;
+      border-radius: 4px;
+      padding: 16px;
+      color: #c00;
+      text-align: center;
+    }
+
+    /* チャート風グラフ（シンプル） */
+    .mini-bar {
+      display: inline-block;
+      height: 12px;
+      border-radius: 2px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="header-top">
+    <div class="logo">
+      <span class="logo-badge">SIM</span>
+      <span class="logo-sub">トレーディングシミュレーター</span>
+    </div>
+    <div class="header-right">
+      <span class="sim-badge">シミュレーション中</span>
+      <span id="updated-at">--</span>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="#" class="active">ポートフォリオ</a>
+    <a href="#holdings">保有銘柄</a>
+    <a href="#trades">取引履歴</a>
+  </nav>
+</header>
+
+<!-- メイン -->
+<div class="container">
+
+  <!-- エラー表示 -->
+  <div id="error-box" class="error-box" style="display:none; margin-bottom:16px;">
+    <span id="error-msg"></span>
+  </div>
+
+  <!-- サマリー -->
+  <div class="summary-grid" id="summary-section">
+    <div class="summary-card total">
+      <div class="label">総資産評価額</div>
+      <div class="value" id="total-assets">--</div>
+      <div class="sub" id="total-gain-sub">--</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">評価損益</div>
+      <div class="value" id="total-gain">--</div>
+      <div class="sub" id="total-gain-pct">--</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">株式評価額</div>
+      <div class="value" id="market-value">--</div>
+      <div class="sub" id="position-count">--</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">預り金（現金）</div>
+      <div class="value" id="cash">--</div>
+      <div class="sub" id="initial-cash">--</div>
+    </div>
+  </div>
+
+  <!-- 保有銘柄 -->
+  <div class="section" id="holdings">
+    <div class="section-header">
+      <span class="section-title">■ 保有銘柄一覧</span>
+      <button class="refresh-btn" onclick="loadData()">🔄 更新</button>
+    </div>
+    <div class="section-body">
+      <div id="holdings-loading" class="loading">
+        <span class="spinner"></span>データ取得中...
+      </div>
+      <table id="holdings-table" style="display:none;">
+        <thead>
+          <tr>
+            <th style="text-align:left;">銘柄</th>
+            <th>保有株数</th>
+            <th>平均取得単価</th>
+            <th>現在値</th>
+            <th>評価額</th>
+            <th>取得額</th>
+            <th>評価損益</th>
+            <th>損益率</th>
+          </tr>
+        </thead>
+        <tbody id="holdings-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 取引履歴 -->
+  <div class="section" id="trades">
+    <div class="section-header">
+      <span class="section-title">■ 取引履歴（直近30件）</span>
+    </div>
+    <div class="section-body">
+      <div id="trades-loading" class="loading">
+        <span class="spinner"></span>取得中...
+      </div>
+      <table id="trades-table" style="display:none;">
+        <thead>
+          <tr>
+            <th style="text-align:left;">日時</th>
+            <th style="text-align:left;">売買区分</th>
+            <th style="text-align:left;">銘柄コード</th>
+            <th>株数</th>
+            <th>約定単価</th>
+            <th>実現損益</th>
+            <th>損益率</th>
+          </tr>
+        </thead>
+        <tbody id="trades-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  ※ このサービスはシミュレーションです。実際の株式売買は行われていません。<br>
+  相場データは yfinance 経由で取得（15〜20分遅延の場合あり）
+</div>
+
+<script>
+  const fmt = (n, digits=0) => {
+    if (n === null || n === undefined || isNaN(n)) return '--';
+    return new Intl.NumberFormat('ja-JP', { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(n);
+  };
+
+  const yen = (n, digits=0) => `¥${fmt(n, digits)}`;
+
+  const gainClass = (v) => v > 0 ? 'up' : v < 0 ? 'down' : 'flat';
+  const gainSign  = (v) => v > 0 ? '+' : '';
+
+  function showError(msg) {
+    document.getElementById('error-box').style.display = 'block';
+    document.getElementById('error-msg').textContent = msg;
+  }
+
+  function hideError() {
+    document.getElementById('error-box').style.display = 'none';
+  }
+
+  async function loadData() {
+    hideError();
+    document.getElementById('holdings-loading').style.display = 'block';
+    document.getElementById('holdings-table').style.display = 'none';
+    document.getElementById('trades-loading').style.display = 'block';
+    document.getElementById('trades-table').style.display = 'none';
+
+    try {
+      const res = await fetch('/api/portfolio');
+      const data = await res.json();
+
+      if (data.error) {
+        showError(data.error);
+        document.getElementById('holdings-loading').style.display = 'none';
+        document.getElementById('trades-loading').style.display = 'none';
+        return;
+      }
+
+      // 更新時刻
+      document.getElementById('updated-at').textContent = data.updated_at;
+
+      // サマリー
+      const s = data.summary;
+      const gc = gainClass(s.total_gain);
+
+      document.getElementById('total-assets').textContent = yen(s.total_assets);
+      document.getElementById('total-gain-sub').textContent = `初期資金: ${yen(s.initial_cash)}`;
+
+      const gainEl = document.getElementById('total-gain');
+      gainEl.textContent = `${gainSign(s.total_gain)}${yen(s.total_gain)}`;
+      gainEl.className = `value ${gc}`;
+
+      const gainPctEl = document.getElementById('total-gain-pct');
+      gainPctEl.textContent = `${gainSign(s.total_gain_pct)}${fmt(s.total_gain_pct, 2)}%`;
+      gainPctEl.className = `sub ${gc}`;
+
+      document.getElementById('market-value').textContent = yen(s.market_value);
+      document.getElementById('position-count').textContent = `保有銘柄数: ${s.position_count}銘柄`;
+      document.getElementById('cash').textContent = yen(s.cash);
+      document.getElementById('initial-cash').textContent = `初期資金比: ${fmt(s.cash / s.initial_cash * 100, 1)}%`;
+
+      // 保有銘柄
+      const hBody = document.getElementById('holdings-body');
+      hBody.innerHTML = '';
+
+      if (data.positions.length === 0) {
+        hBody.innerHTML = '<tr class="empty-row"><td colspan="8">保有銘柄はありません</td></tr>';
+      } else {
+        data.positions.forEach(p => {
+          const cls = gainClass(p.gain);
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>
+              <div class="ticker-cell">
+                <span class="ticker-code">${p.ticker}</span>
+                <span class="ticker-name">${p.name}</span>
+              </div>
+            </td>
+            <td>${fmt(p.shares)}株</td>
+            <td>${yen(p.avg_price, 1)}</td>
+            <td class="${cls}" style="font-weight:bold;">${yen(p.current_price, 1)}</td>
+            <td style="font-weight:bold;">${yen(p.market_value)}</td>
+            <td>${yen(p.cost)}</td>
+            <td>
+              <div class="gain-cell">
+                <span class="${cls}" style="font-weight:bold;">${gainSign(p.gain)}${yen(p.gain)}</span>
+              </div>
+            </td>
+            <td>
+              <span class="pill ${cls}">${gainSign(p.gain_pct)}${fmt(p.gain_pct, 2)}%</span>
+            </td>
+          `;
+          hBody.appendChild(tr);
+        });
+      }
+
+      document.getElementById('holdings-loading').style.display = 'none';
+      document.getElementById('holdings-table').style.display = 'table';
+
+      // 取引履歴
+      const tBody = document.getElementById('trades-body');
+      tBody.innerHTML = '';
+
+      if (data.trades.length === 0) {
+        tBody.innerHTML = '<tr class="empty-row"><td colspan="7">取引履歴がありません</td></tr>';
+      } else {
+        data.trades.forEach(t => {
+          const isBuy = t.action === 'BUY';
+          const gainVal = parseFloat(t.gain) || 0;
+          const gainPctVal = parseFloat(t.gain_pct) || 0;
+          const cls = gainClass(gainVal);
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${t.datetime}</td>
+            <td><span class="action-badge ${isBuy ? 'buy' : 'sell'}">${isBuy ? '買' : '売'}</span></td>
+            <td><strong>${t.ticker}</strong></td>
+            <td>${fmt(t.shares)}株</td>
+            <td>${yen(parseFloat(t.price), 1)}</td>
+            <td class="${!isBuy ? cls : 'flat'}" style="font-weight:${!isBuy ? 'bold' : 'normal'};">
+              ${!isBuy ? `${gainSign(gainVal)}${yen(gainVal)}` : '--'}
+            </td>
+            <td>
+              ${!isBuy
+                ? `<span class="pill ${cls}">${gainSign(gainPctVal)}${fmt(gainPctVal, 2)}%</span>`
+                : '--'}
+            </td>
+          `;
+          tBody.appendChild(tr);
+        });
+      }
+
+      document.getElementById('trades-loading').style.display = 'none';
+      document.getElementById('trades-table').style.display = 'table';
+
+    } catch (err) {
+      showError(`データの取得に失敗しました: ${err.message}`);
+      document.getElementById('holdings-loading').style.display = 'none';
+      document.getElementById('trades-loading').style.display = 'none';
+    }
+  }
+
+  // 初回読み込み & 60秒ごとに自動更新
+  loadData();
+  setInterval(loadData, 60000);
+</script>
+</body>
+</html>
