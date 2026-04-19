@@ -1,0 +1,12 @@
+{
+  "functions": {
+    "api/portfolio.py": {
+      "runtime": "python3.9",
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    { "src": "/api/portfolio", "dest": "/api/portfolio.py" },
+    { "src": "/(.*)",          "dest": "/index.html" }
+  ]
+}
