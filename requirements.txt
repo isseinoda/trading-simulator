@@ -1,3 +1,5 @@
+# ローカル実行用（Vercelでは使用しない）
 yfinance>=0.2.40
 pandas>=2.0.0
 requests>=2.31.0
+flask>=3.0.0
