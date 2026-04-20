@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "MSFT",
+    "name": "Microsoft Corp",
+    "price": 423.89,
+    "shares": 117,
+    "amount": 49595.13,
+    "reason": "売上成長+16%, 高利益率35%, 高ROE38%",
+    "score": 7,
+    "executed_at": "2026-04-20T13:15:39.485844"
+  },
+  {
+    "action": "BUY",
     "ticker": "7974.T",
     "name": "Nintendo Co Ltd",
     "price": 6840.0,
