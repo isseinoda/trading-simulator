@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "7974.T",
+    "name": "Nintendo Co Ltd",
+    "price": 6840.0,
+    "shares": 7,
+    "amount": 47880.0,
+    "reason": "PER適正(19.5), 売上高成長+22%, 高利益率25%",
+    "score": 11,
+    "executed_at": "2026-04-20T00:05:53.475857"
+  },
+  {
+    "action": "BUY",
     "ticker": "8306.T",
     "name": "MUFG",
     "price": 1908.8,
