@@ -1,5 +1,16 @@
 [
   {
+    "action": "BUY",
+    "ticker": "META",
+    "name": "Meta Platforms Inc",
+    "price": 570.27,
+    "shares": 87,
+    "amount": 49613.49,
+    "reason": "売上成長+19%, 高利益率34%, 高ROE38%",
+    "score": 7,
+    "executed_at": "2026-04-21T13:13:46.586161"
+  },
+  {
     "action": "SELL",
     "ticker": "7974.T",
     "name": "Nintendo Co Ltd",
