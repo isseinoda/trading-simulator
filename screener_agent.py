@@ -29,9 +29,23 @@ _US_FALLBACK = {
     "V":     {"price": 306.0,  "name": "Visa Inc",                 "pe": 30.0, "forward_pe": 27.0, "revenue_growth": 0.10, "profit_margins": 0.53, "roe": 0.45, "debt_to_equity": 170.0, "market_cap":  630_000_000_000, "sector": "Financials"},
 }
 
-def _synthetic_us(ticker: str) -> dict | None:
-    """Return simulated OHLCV-derived metrics for a US ticker when live data fails."""
-    base = _US_FALLBACK.get(ticker)
+# Simulated baseline prices (JPY) for Japan tickers — used when live data is unavailable
+_JP_FALLBACK = {
+    "7203.T": {"price": 3420,  "name": "Toyota Motor Corp",          "pe": 10.2, "forward_pe": 9.5,  "revenue_growth": 0.08, "profit_margins": 0.10, "roe": 0.14, "debt_to_equity": 110.0, "market_cap": 54_000_000_000_000, "sector": "Consumer Cyclical"},
+    "9984.T": {"price": 10650, "name": "SoftBank Group Corp",        "pe": None, "forward_pe": None, "revenue_growth": 0.05, "profit_margins": 0.12, "roe": 0.08, "debt_to_equity": 180.0, "market_cap": 18_000_000_000_000, "sector": "Technology"},
+    "6861.T": {"price": 64800, "name": "Keyence Corp",               "pe": 46.0, "forward_pe": 42.0, "revenue_growth": 0.12, "profit_margins": 0.52, "roe": 0.15, "debt_to_equity":  2.0,  "market_cap": 17_000_000_000_000, "sector": "Technology"},
+    "4063.T": {"price": 5620,  "name": "Shin-Etsu Chemical Co",      "pe": 16.5, "forward_pe": 15.0, "revenue_growth": 0.06, "profit_margins": 0.22, "roe": 0.13, "debt_to_equity":  5.0,  "market_cap":  9_000_000_000_000, "sector": "Basic Materials"},
+    "8306.T": {"price": 1850,  "name": "Mitsubishi UFJ Financial",   "pe": 11.0, "forward_pe": 10.0, "revenue_growth": 0.14, "profit_margins": 0.25, "roe": 0.08, "debt_to_equity": 220.0, "market_cap": 16_000_000_000_000, "sector": "Financials"},
+    "9432.T": {"price": 156,   "name": "Nippon Telegraph & Tel",     "pe": 13.5, "forward_pe": 12.5, "revenue_growth": 0.03, "profit_margins": 0.10, "roe": 0.12, "debt_to_equity": 140.0, "market_cap": 14_000_000_000_000, "sector": "Communication Services"},
+    "6758.T": {"price": 22400, "name": "Sony Group Corp",            "pe": 18.0, "forward_pe": 16.0, "revenue_growth": 0.07, "profit_margins": 0.11, "roe": 0.15, "debt_to_equity":  55.0, "market_cap": 14_000_000_000_000, "sector": "Technology"},
+    "7974.T": {"price": 8720,  "name": "Nintendo Co Ltd",            "pe": 20.0, "forward_pe": 18.5, "revenue_growth": -0.03,"profit_margins": 0.28, "roe": 0.14, "debt_to_equity":  0.0,  "market_cap":  7_000_000_000_000, "sector": "Technology"},
+    "4519.T": {"price": 5100,  "name": "Chugai Pharmaceutical Co",   "pe": 28.0, "forward_pe": 24.0, "revenue_growth": 0.18, "profit_margins": 0.30, "roe": 0.22, "debt_to_equity":  3.0,  "market_cap":  5_000_000_000_000, "sector": "Healthcare"},
+    "6954.T": {"price": 4180,  "name": "Fanuc Corp",                 "pe": 32.0, "forward_pe": 28.0, "revenue_growth": 0.10, "profit_margins": 0.22, "roe": 0.10, "debt_to_equity":  0.0,  "market_cap":  4_200_000_000_000, "sector": "Industrials"},
+}
+
+
+def _synthetic_fallback(ticker: str, fallback_db: dict) -> dict | None:
+    base = fallback_db.get(ticker)
     if not base:
         return None
     rng = random.Random(ticker + datetime.now().strftime("%Y%m%d"))
@@ -59,6 +73,16 @@ def _synthetic_us(ticker: str) -> dict | None:
         "news": [],
         "_simulated": True,
     }
+
+
+def _synthetic_us(ticker: str) -> dict | None:
+    """Return simulated metrics for a US ticker when live data fails."""
+    return _synthetic_fallback(ticker, _US_FALLBACK)
+
+
+def _synthetic_jp(ticker: str) -> dict | None:
+    """Return simulated metrics for a Japan ticker when live data fails."""
+    return _synthetic_fallback(ticker, _JP_FALLBACK)
 
 
 def load_config():
@@ -115,6 +139,8 @@ def fetch_stock_data(ticker: str) -> dict | None:
         }
     except Exception as e:
         print(f"  ⚠ {ticker}: {e} — trying fallback", file=sys.stderr)
+        if ticker.endswith(".T"):
+            return _synthetic_jp(ticker)
         return _synthetic_us(ticker)
 
 

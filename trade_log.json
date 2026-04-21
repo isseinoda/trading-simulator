@@ -1,5 +1,15 @@
 [
   {
+    "action": "SELL",
+    "ticker": "7974.T",
+    "name": "Nintendo Co Ltd",
+    "price": 8748.0,
+    "reason": "利確ライン到達(27.9%)",
+    "gain": 13356.0,
+    "gain_pct": 27.89473684210526,
+    "executed_at": "2026-04-21T00:23:40.283335"
+  },
+  {
     "action": "BUY",
     "ticker": "MSFT",
     "name": "Microsoft Corp",
