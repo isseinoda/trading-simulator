@@ -1,66 +1,13 @@
 [
   {
-    "action": "SELL",
-    "ticker": "8306.T",
-    "name": "Mitsubishi UFJ Financial",
-    "price": 1807.07,
-    "reason": "損切りライン到達(-5.3%)",
-    "gain": -2644.979999999996,
-    "gain_pct": -5.329526404023462,
-    "executed_at": "2026-04-22T00:30:31.486943"
-  },
-  {
     "action": "BUY",
-    "ticker": "META",
-    "name": "Meta Platforms Inc",
-    "price": 570.27,
-    "shares": 87,
-    "amount": 49613.49,
-    "reason": "売上成長+19%, 高利益率34%, 高ROE38%",
-    "score": 7,
-    "executed_at": "2026-04-21T13:13:46.586161"
-  },
-  {
-    "action": "SELL",
-    "ticker": "7974.T",
-    "name": "Nintendo Co Ltd",
-    "price": 8748.0,
-    "reason": "利確ライン到達(27.9%)",
-    "gain": 13356.0,
-    "gain_pct": 27.89473684210526,
-    "executed_at": "2026-04-21T00:23:40.283335"
-  },
-  {
-    "action": "BUY",
-    "ticker": "MSFT",
-    "name": "Microsoft Corp",
-    "price": 423.89,
-    "shares": 117,
-    "amount": 49595.13,
-    "reason": "売上成長+16%, 高利益率35%, 高ROE38%",
-    "score": 7,
-    "executed_at": "2026-04-20T13:15:39.485844"
-  },
-  {
-    "action": "BUY",
-    "ticker": "7974.T",
-    "name": "Nintendo Co Ltd",
-    "price": 6840.0,
-    "shares": 7,
-    "amount": 47880.0,
-    "reason": "PER適正(19.5), 売上高成長+22%, 高利益率25%",
-    "score": 11,
-    "executed_at": "2026-04-20T00:05:53.475857"
-  },
-  {
-    "action": "BUY",
-    "ticker": "8306.T",
-    "name": "MUFG",
-    "price": 1908.8,
-    "shares": 26,
-    "amount": 49628.799999999996,
-    "reason": "PER割安(10.2), 売上成長+11%, 利益率18%",
-    "score": 7,
-    "executed_at": "2026-04-19T13:08:22.188794"
+    "ticker": "NVDA",
+    "name": "NVIDIA Corporation",
+    "price": 118.25,
+    "shares": 422,
+    "amount": 49901.5,
+    "reason": "売上高成長+78%, 高利益率55%, 高ROE123%",
+    "score": 10,
+    "executed_at": "2026-04-22T13:25:07.285548"
   }
 ]
