@@ -1,5 +1,15 @@
 [
   {
+    "action": "SELL",
+    "ticker": "8306.T",
+    "name": "Mitsubishi UFJ Financial",
+    "price": 1807.07,
+    "reason": "損切りライン到達(-5.3%)",
+    "gain": -2644.979999999996,
+    "gain_pct": -5.329526404023462,
+    "executed_at": "2026-04-22T00:30:31.486943"
+  },
+  {
     "action": "BUY",
     "ticker": "META",
     "name": "Meta Platforms Inc",
