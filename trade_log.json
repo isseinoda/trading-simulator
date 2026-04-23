@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "4519.T",
+    "name": "Chugai Pharmaceutical Co",
+    "price": 4980.33,
+    "shares": 10,
+    "amount": 49803.3,
+    "reason": "売上成長+18%, 高利益率30%, 高ROE22%",
+    "score": 7,
+    "executed_at": "2026-04-23T00:16:50.129613"
+  },
+  {
+    "action": "BUY",
     "ticker": "NVDA",
     "name": "NVIDIA Corporation",
     "price": 118.25,

@@ -1,3 +1,4 @@
 datetime,action,ticker,shares,price,gain,gain_pct
 2026-04-19 20:00,BUY,JPM,161,310.29,0,0.00
 2026-04-22 13:25,BUY,NVDA,422,118.25,0,0.00
+2026-04-23 00:16,BUY,4519.T,10,4980.33,0,0.00
