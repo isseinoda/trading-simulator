@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "GOOGL",
+    "name": "Alphabet Inc",
+    "price": 179.94,
+    "shares": 277,
+    "amount": 49843.38,
+    "reason": "PER適正(22.0), 売上成長+14%, 高利益率28%",
+    "score": 8,
+    "executed_at": "2026-04-23T13:15:17.930239"
+  },
+  {
+    "action": "BUY",
     "ticker": "4519.T",
     "name": "Chugai Pharmaceutical Co",
     "price": 4980.33,
