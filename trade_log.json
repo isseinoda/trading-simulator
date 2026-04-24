@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "8306.T",
+    "name": "Mitsubishi UFJ Financial",
+    "price": 1852.45,
+    "shares": 26,
+    "amount": 48163.700000000004,
+    "reason": "PER割安(11.0), 売上成長+14%, 高利益率25%",
+    "score": 9,
+    "executed_at": "2026-04-24T00:24:57.626767"
+  },
+  {
+    "action": "BUY",
     "ticker": "GOOGL",
     "name": "Alphabet Inc",
     "price": 179.94,
