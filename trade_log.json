@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "MSFT",
+    "name": "Microsoft Corp",
+    "price": 405.23,
+    "shares": 123,
+    "amount": 49843.29,
+    "reason": "売上成長+16%, 高利益率35%, 高ROE38%",
+    "score": 7,
+    "executed_at": "2026-04-24T13:31:51.357477"
+  },
+  {
+    "action": "BUY",
     "ticker": "8306.T",
     "name": "Mitsubishi UFJ Financial",
     "price": 1852.45,
