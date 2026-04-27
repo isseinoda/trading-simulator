@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "META",
+    "name": "Meta Platforms Inc",
+    "price": 558.63,
+    "shares": 89,
+    "amount": 49718.07,
+    "reason": "売上成長+19%, 高利益率34%, 高ROE38%",
+    "score": 7,
+    "executed_at": "2026-04-27T13:30:00.778644"
+  },
+  {
+    "action": "BUY",
     "ticker": "7203.T",
     "name": "Toyota Motor Corp",
     "price": 3385.72,
