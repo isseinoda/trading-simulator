@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "7203.T",
+    "name": "Toyota Motor Corp",
+    "price": 3385.72,
+    "shares": 14,
+    "amount": 47400.079999999994,
+    "reason": "PER割安(10.2), MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-04-27T00:11:55.767825"
+  },
+  {
+    "action": "BUY",
     "ticker": "MSFT",
     "name": "Microsoft Corp",
     "price": 405.23,
