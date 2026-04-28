@@ -1,6 +1,28 @@
 [
   {
     "action": "BUY",
+    "ticker": "9432.T",
+    "name": "Nippon Telegraph & Tel",
+    "price": 159.28,
+    "shares": 313,
+    "amount": 49854.64,
+    "reason": "PER割安(13.5), MA20>MA50(上昇), RSI低め(38)",
+    "score": 6,
+    "executed_at": "2026-04-28T00:20:40.620681"
+  },
+  {
+    "action": "BUY",
+    "ticker": "AMZN",
+    "name": "Amazon.com Inc",
+    "price": 214.48,
+    "shares": 233,
+    "amount": 49973.84,
+    "reason": "売上成長+11%, 高ROE22%, MA20>MA50(上昇)",
+    "score": 6,
+    "executed_at": "2026-04-28T00:20:25.488421"
+  },
+  {
+    "action": "BUY",
     "ticker": "META",
     "name": "Meta Platforms Inc",
     "price": 558.63,
