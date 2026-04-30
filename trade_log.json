@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "AAPL",
+    "name": "Apple Inc",
+    "price": 196.29,
+    "shares": 254,
+    "amount": 49857.659999999996,
+    "reason": "高利益率26%, 高ROE160%, MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-04-30T13:17:16.619832"
+  },
+  {
+    "action": "BUY",
     "ticker": "7203.T",
     "name": "Toyota Motor Corp",
     "price": 3398.25,
