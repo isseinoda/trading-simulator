@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "7203.T",
+    "name": "Toyota Motor Corp",
+    "price": 3398.25,
+    "shares": 14,
+    "amount": 47575.5,
+    "reason": "PER割安(10.2), MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-04-30T00:08:56.166750"
+  },
+  {
+    "action": "BUY",
     "ticker": "META",
     "name": "Meta Platforms Inc",
     "price": 558.53,
