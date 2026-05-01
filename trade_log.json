@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "AMZN",
+    "name": "Amazon.com Inc",
+    "price": 207.77,
+    "shares": 240,
+    "amount": 49864.8,
+    "reason": "売上成長+11%, 高ROE22%, MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-01T13:12:56.593823"
+  },
+  {
+    "action": "BUY",
     "ticker": "4063.T",
     "name": "Shin-Etsu Chemical Co",
     "price": 5669.78,
