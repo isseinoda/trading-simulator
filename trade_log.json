@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "V",
+    "name": "Visa Inc",
+    "price": 300.37,
+    "shares": 166,
+    "amount": 49861.42,
+    "reason": "高利益率53%, 高ROE45%, MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-04T13:36:59.941951"
+  },
+  {
+    "action": "BUY",
     "ticker": "AMZN",
     "name": "Amazon.com Inc",
     "price": 207.77,
