@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "9432.T",
+    "name": "Nippon Telegraph & Tel",
+    "price": 155.67,
+    "shares": 321,
+    "amount": 49970.06999999999,
+    "reason": "PER割安(13.5), MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-05T00:14:00.162293"
+  },
+  {
+    "action": "BUY",
     "ticker": "V",
     "name": "Visa Inc",
     "price": 300.37,
