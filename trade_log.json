@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "V",
+    "name": "Visa Inc",
+    "price": 305.94,
+    "shares": 163,
+    "amount": 49868.22,
+    "reason": "高利益率53%, 高ROE45%, MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-07T13:10:45.078212"
+  },
+  {
+    "action": "BUY",
     "ticker": "9432.T",
     "name": "Nippon Telegraph & Tel",
     "price": 159.69,
