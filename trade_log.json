@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "9432.T",
+    "name": "Nippon Telegraph & Tel",
+    "price": 159.69,
+    "shares": 313,
+    "amount": 49982.97,
+    "reason": "PER割安(13.5), MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-07T00:07:41.083790"
+  },
+  {
+    "action": "BUY",
     "ticker": "AMZN",
     "name": "Amazon.com Inc",
     "price": 207.77,
