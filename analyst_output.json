@@ -47,12 +47,12 @@
       "sector": "Communication Services",
       "news": [],
       "_simulated": true,
-      "score": 5,
+      "score": 4,
       "signals": [
         "PER割安(13.5)",
         "MA20>MA50(上昇)"
       ],
-      "action": "BUY",
+      "action": "WATCH",
       "held_reason": null
     }
   ],
@@ -248,7 +248,7 @@
         "MA20>MA50(上昇)"
       ],
       "action": "HOLD",
-      "held_reason": "保有中(-0.4%)"
+      "held_reason": "保有中(+7.0%)"
     },
     {
       "ticker": "9432.T",
@@ -348,13 +348,40 @@
       "sector": "Technology",
       "news": [],
       "_simulated": true,
-      "score": 2,
+      "score": 4,
       "signals": [
         "利益率12%",
         "MA20>MA50(上昇)"
       ],
-      "action": "SKIP",
-      "held_reason": null
+      "action": "HOLD",
+      "held_reason": "保有中(+1.2%)"
+    },
+    {
+      "ticker": "V",
+      "name": "Visa Inc",
+      "price": 299.78,
+      "change_pct": 0.6089,
+      "ma20": 292.15,
+      "ma50": 294.57,
+      "rsi": 44.5,
+      "pe": 30.0,
+      "forward_pe": 27.0,
+      "revenue_growth": 0.1,
+      "profit_margins": 0.53,
+      "roe": 0.45,
+      "debt_to_equity": 170.0,
+      "market_cap": 630000000000,
+      "sector": "Financials",
+      "news": [],
+      "_simulated": true,
+      "score": 3,
+      "signals": [
+        "高利益率53%",
+        "高ROE45%",
+        "MA20<MA50(下降)"
+      ],
+      "action": "HOLD",
+      "held_reason": "保有中(-0.2%)"
     },
     {
       "ticker": "6758.T",
