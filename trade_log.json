@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "BRK-B",
+    "name": "Berkshire Hathaway Inc B",
+    "price": 484.38,
+    "shares": 103,
+    "amount": 49891.14,
+    "reason": "PER適正(21.0), 利益率14%, MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-15T13:06:50.463285"
+  },
+  {
+    "action": "BUY",
     "ticker": "V",
     "name": "Visa Inc",
     "price": 305.94,
