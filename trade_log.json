@@ -1,6 +1,17 @@
 [
   {
     "action": "BUY",
+    "ticker": "6758.T",
+    "name": "Sony Group Corp",
+    "price": 21934.6,
+    "shares": 2,
+    "amount": 43869.2,
+    "reason": "PER適正(18.0), 利益率11%, MA20>MA50(上昇)",
+    "score": 5,
+    "executed_at": "2026-05-19T00:05:25.452380"
+  },
+  {
+    "action": "BUY",
     "ticker": "BRK-B",
     "name": "Berkshire Hathaway Inc B",
     "price": 484.38,
